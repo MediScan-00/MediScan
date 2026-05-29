@@ -1,0 +1,437 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Cairo:wght@400;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+/* Dark Mode Overrides */
+body.dark-mode {
+  --bg:        #0D1F1E;
+  --white:     #1A3330;
+  --cream:     #1E3A36;
+  --ink:       #E8F5F3;
+  --ink-muted: #7DB5AE;
+  --border:    #2D5550;
+  --sage-pale: #1A3330;
+  --mint:      #1A3330;
+  --sage-mist: #0D1F1E;
+  
+  background-color: var(--bg) !important;
+  color: var(--ink) !important;
+}
+
+body.dark-mode .bg-white,
+body.dark-mode .bg-white\/60,
+body.dark-mode .bg-white\/70,
+body.dark-mode .bg-white\/80 {
+  background-color: var(--white) !important;
+}
+
+body.dark-mode .bg-teal-50,
+body.dark-mode .bg-slate-50,
+body.dark-mode .bg-gray-50,
+body.dark-mode .bg-gray-50\/50,
+body.dark-mode .bg-gray-100\/80 {
+  background-color: var(--cream) !important;
+}
+
+body.dark-mode .text-gray-900,
+body.dark-mode .text-gray-800,
+body.dark-mode .text-gray-700 {
+  color: var(--ink) !important;
+}
+
+body.dark-mode .text-gray-600,
+body.dark-mode .text-gray-500,
+body.dark-mode .text-gray-400 {
+  color: var(--ink-muted) !important;
+}
+
+body.dark-mode .border-gray-200,
+body.dark-mode .border-gray-200\/50,
+body.dark-mode .border-white {
+  border-color: var(--border) !important;
+}
+
+*, *::before, *::after {
+  transition: 
+    background-color 0.35s ease,
+    color 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease !important;
+}
+
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    #f0f0f0 25%,
+    #e0e0e0 50%,
+    #f0f0f0 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-wave 1.5s ease-in-out infinite;
+  border-radius: 8px;
+}
+
+@keyframes skeleton-wave {
+  0%   { background-position: 200% 0 }
+  100% { background-position: -200% 0 }
+}
+
+/* Dark mode skeleton */
+body.dark-mode .skeleton {
+  background: linear-gradient(
+    90deg,
+    #1e3a36 25%,
+    #2a4a45 50%,
+    #1e3a36 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-wave 1.5s ease-in-out infinite;
+}
+
+@keyframes skeleton-dot {
+  from { opacity:0.3; transform:translateY(0) }
+  to   { opacity:1;   transform:translateY(-4px) }
+}
+
+.logo-medi {
+  font-weight: 900;
+  color: #1a3330;
+  transition: color 0.35s ease;
+}
+
+body.dark-mode .logo-medi {
+  color: #FFFFFF;
+}
+
+.logo-scan {
+  font-weight: 900;
+  color: #13B5A6;
+}
+
+.logo-icon-wrap {
+  /* No longer need background here since svg has it */
+}
+
+body.dark-mode .logo-icon-wrap {
+  filter: brightness(0.7);
+}
+
+.logo-svg-bg {
+  transition: fill 0.35s ease;
+}
+
+body.dark-mode .logo-svg-bg {
+  fill: #2A4A45 !important;
+}
+
+body.dark-mode #account-modal .account-card {
+  background: #1A3330 !important;
+}
+
+body.dark-mode #account-modal .stat-card {
+  background: rgba(255,255,255,.05) !important;
+  border-color: rgba(255,255,255,.08) !important;
+}
+
+body.dark-mode #account-modal .stat-value {
+  color: #E8F5F3 !important;
+}
+
+body.dark-mode #account-modal .action-btn {
+  background: rgba(255,255,255,.05) !important;
+  border-color: rgba(74,124,111,.3) !important;
+  color: #6BAF9E !important;
+}
+
+body.dark-mode #account-modal .edit-area {
+  background: rgba(74,124,111,.1) !important;
+  border-color: rgba(74,124,111,.25) !important;
+}
+
+body.dark-mode #account-modal .edit-input {
+  background: #0D1F1E !important;
+  border-color: rgba(255,255,255,.1) !important;
+  color: #E8F5F3 !important;
+}
+
+@keyframes profileModalIn {
+  from {
+    opacity: 0;
+    transform: scale(0.88) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+@keyframes rotate {
+  from { transform: rotate(0deg) }
+  to   { transform: rotate(360deg) }
+}
+
+body.dark-mode #reminder-startdate {
+  background: #1A3330 !important;
+  border-color: rgba(255,255,255,.1) !important;
+  color: #E8F5F3 !important;
+  color-scheme: dark;
+}
+
+body.rtl-mode {
+  direction: rtl;
+  text-align: right;
+  font-family: 'Cairo', system-ui, -apple-system, sans-serif;
+}
+body.rtl-mode svg {
+  margin-left: 6px;
+  margin-right: 0;
+}
+body.rtl-mode .price-string {
+  direction: ltr;
+  display: inline-block;
+}
+body.rtl-mode .chevron-icon {
+  transform: rotate(180deg);
+}
+
+/* Language Transition Animations */
+#lang-transition-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  z-index: 999999;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+body.dark-mode #lang-transition-overlay {
+  background: rgba(13, 31, 30, 0.95);
+}
+body.animating-lang #lang-transition-overlay {
+  opacity: 1;
+}
+
+.text-pop-in {
+  animation: textPopIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes textPopIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Hide scrollbar for elements with the .no-scrollbar class */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+/* Account modal — force full visibility */
+#account-modal {
+  align-items: center !important;
+  padding: 16px !important;
+  overflow-y: auto !important;
+}
+
+#account-modal .account-card,
+#account-modal > div > div,
+#account-modal .modal-card {
+  max-height: 92dvh !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  height: auto !important;
+}
+
+/* Buttons section always visible */
+#account-modal .action-buttons,
+#account-modal > div > div > div:last-child {
+  padding-bottom: calc(
+    20px + env(safe-area-inset-bottom)
+  ) !important;
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 10px !important;
+}
+
+/* Make sure buttons are never hidden */
+#account-modal button[onclick*="Name"],
+#account-modal button[onclick*="Email"],
+#account-modal .edit-name-btn,
+#account-modal .edit-email-btn {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+@media (max-height: 680px) {
+  #account-modal {
+    align-items: flex-start !important;
+    padding-top: 12px !important;
+  }
+}
+
+
+@keyframes accountModalIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Base override to ensure wrapper is perfectly fitting */
+#account-modal {
+  /* wrapper styles inline cover this */
+}
+
+/* Dark mode specific styling for the modal */
+body.dark-mode #account-modal .account-white-body {
+  background: #132825 !important;
+}
+
+body.dark-mode #account-modal .stat-card {
+  background: rgba(255,255,255,.04) !important;
+  border-color: rgba(255,255,255,.07) !important;
+}
+
+body.dark-mode #account-modal .stat-value {
+  color: #E8F5F3 !important;
+}
+
+body.dark-mode #account-modal .stat-label {
+  color: rgba(255,255,255,.4) !important;
+}
+
+body.dark-mode #account-modal .edit-email-btn {
+  background: rgba(255,255,255,.05) !important;
+  border-color: rgba(74,124,111,.3) !important;
+  color: #E8F5F3 !important;
+}
+
+body.dark-mode #account-modal .edit-area {
+  background: rgba(74,124,111,.08) !important;
+  border-color: rgba(74,124,111,.2) !important;
+}
+
+body.dark-mode #account-modal .edit-input {
+  background: #0D1F1E !important;
+  border-color: rgba(255,255,255,.1) !important;
+  color: #E8F5F3 !important;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg) }
+}
+
+@media (max-height: 680px) {
+  #account-modal { align-items: flex-start !important; padding-top: 12px !important; }
+}
+\n
+/* Force fix all account modal issues */
+
+#account-modal {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 20px 16px !important;
+}
+
+/* Card */
+#account-modal .account-card,
+#account-modal > div > div {
+  overflow: hidden !important;
+  border-radius: 28px !important;
+  max-width: 360px !important;
+  width: 100% !important;
+  max-height: 90dvh !important;
+  overflow-y: auto !important;
+}
+
+/* Header full width, no crop */
+#account-modal .account-header {
+  padding: 36px 24px 28px !important;
+  margin: 0 !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  text-align: center !important;
+}
+
+/* Avatar centered */
+#account-modal .avatar-wrap {
+  width: 80px !important;
+  height: 80px !important;
+  margin: 0 auto 20px !important;
+  position: relative !important;
+  display: block !important;
+}
+
+/* Ring aligned */
+#account-modal .avatar-ring {
+  position: absolute !important;
+  top: -8px !important;
+  left: -8px !important;
+  width: calc(100% + 16px) !important;
+  height: calc(100% + 16px) !important;
+  border-radius: 50% !important;
+}
+
+/* Stats all inside cards */
+#account-modal .stat-card {
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 90px !important; max-height: 110px !important;
+  box-sizing: border-box !important;
+  position: relative !important;
+}
+
+#account-modal .stat-value {
+  position: static !important;
+  display: block !important;
+  width: 100% !important;
+  text-align: center !important;
+}
+
+/* Edit area stacked */
+#account-modal .edit-area label,
+#account-modal .edit-area .edit-label {
+  display: block !important;
+  width: 100% !important;
+}
+
+#account-modal .edit-area input {
+  display: block !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+#account-modal .edit-area .btn-row {
+  display: flex !important;
+  gap: 8px !important;
+  width: 100% !important;
+}
+
+#account-modal .edit-area .save-btn {
+  flex: 1 !important;
+  min-width: 0 !important;
+}

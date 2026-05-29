@@ -1,0 +1,6 @@
+{
+  "name": "MediScan",
+  "description": "Smart Pharmacist Assistant to analyze prescriptions and drug names, featuring a Voice Assistant for accessibility.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}

@@ -1,0 +1,65 @@
+684:              <button
+712:          <button
+960:          <button id="allow-notif-btn" style="width:100%; height:48px; background:#4A7C6F; color:white; border:none; border-radius:12px; font-size:15px; font-weight:700; cursor:pointer; margin-bottom:10px;">
+963:          <button onclick="this.closest('[style*=fixed]').remove()" style="width:100%; height:40px; background:transparent; color:#6b9490; border:1px solid #e2e8f0; border-radius:12px; font-size:13px; cursor:pointer;">
+1741:              <button 
+1869:                  <button onClick={() => { account_closeModal(); setShowPaywall('monthly'); }} style={{
+1883:                  <button onClick={() => { setEditingName(!editingName); setEditingEmail(false); }} 
+1898:                  <button className="edit-email-btn" onClick={() => { setEditingEmail(!editingEmail); setEditingName(false); }} 
+1927:                      <button onClick={() => {
+1936:                      <button onClick={() => { setEditingName(false); setEditingEmail(false); }} className="stat-label"
+2024:              <button onClick={closeEmergencyMode} className="text-white/60 hover:text-white p-1 bg-black/10 hover:bg-black/20 rounded-xl transition-colors">
+2064:                   <button onClick={closeEmergencyMode} className="w-full py-4 text-center font-bold text-gray-500 hover:text-gray-700 hover:bg-gray-50 rounded-xl transition-colors">
+2093:                  <button type="submit" disabled={isAssessingEmergency} className="w-full py-4 mt-2 bg-red-600 hover:bg-red-700 text-white rounded-2xl font-bold tracking-wide shadow-md shadow-red-600/20 disabled:opacity-50 flex items-center justify-center gap-2">
+2132:            <button
+2150:              <button
+2177:                      <button
+2205:            <button 
+2227:                       <button onClick={() => setConfirmSignout(false)} className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 py-2 rounded-xl text-[13px] font-bold transition-colors">{t("cancel_btn")}</button>
+2228:                       <button onClick={account_signOut} className="flex-1 bg-red-500 hover:bg-red-600 text-white py-2 rounded-xl text-[13px] font-bold transition-colors flex items-center justify-center gap-1.5"><LogOut className="w-3.5 h-3.5" /> {t("sign_out")}</button>
+2241:                    <button onClick={account_openModal} className="w-full flex items-center gap-2.5 px-3 py-2.5 text-[14px] text-gray-700 hover:bg-[#f8fffe] hover:text-teal-700 rounded-[10px] transition-colors font-medium">
+2244:                      <button onClick={() => { setShowDropdown(false); setShowPaywall('scan'); }} className="w-full flex items-center gap-2.5 px-3 py-2.5 text-[14px] text-teal-600 font-semibold hover:bg-teal-50 rounded-[10px] transition-colors">
+2247:                    <button onClick={() => { setActiveTab('history'); setShowDropdown(false); const el = document.getElementById('tab-history'); if (el) el.click(); }} className="w-full flex items-center gap-2.5 px-3 py-2.5 text-[14px] text-gray-700 hover:bg-[#f8fffe] hover:text-teal-700 rounded-[10px] transition-colors font-medium">
+2250:                    <button onClick={() => setConfirmSignout(true)} className="w-full flex items-center gap-2.5 px-3 py-2.5 text-[14px] text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-[10px] transition-colors font-medium group">
+2275:            <button
+2285:            <button
+2298:            <button
+2310:            <button
+2322:            <button
+2385:                <button
+2471:                      <button
+2541:                <button
+2587:                           <button 
+2593:                           <button onClick={() => reminder_delete(r.id)} className="w-8 h-8 flex justify-center items-center text-rose-500 hover:bg-rose-50 rounded-full transition-colors font-bold text-lg">×</button>
+2675:                <button
+2747:                   <button 
+2764:                   <button
+2826:                          <button 
+2836:                                <button
+2840:                                <button
+2846:                            <button 
+2883:                    <button 
+2902:                    <button
+2922:                  <button
+2959:                           <button
+2974:                    <button
+2984:                  <button
+3215:                           <button
+3226:                             <button
+3255:                     <button
+3261:                     <button
+3291:                      <button onClick={() => setViewingReportId(null)} style={{ background: 'transparent', border: 'none', color: '#6b9490', cursor: 'pointer', padding: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+3297:                    <button
+3401:                    <button onClick={() => setExplanationMode('quick')} className={explanationMode === 'quick' ? 'flex-1 bg-white shadow-sm py-2.5 rounded-xl text-sm font-medium text-teal-700 transition-all' : 'flex-1 py-2.5 text-sm font-medium text-gray-500 hover:text-gray-700 transition-all'}>{t("very_quick")}</button>
+3402:                    <button onClick={() => setExplanationMode('simplified')} className={explanationMode === 'simplified' ? 'flex-1 bg-white shadow-sm py-2.5 rounded-xl text-sm font-medium text-teal-700 transition-all' : 'flex-1 py-2.5 text-sm font-medium text-gray-500 hover:text-gray-700 transition-all'}>{t("simplified")}</button>
+3403:                    <button onClick={() => setExplanationMode('professional')} className={explanationMode === 'professional' ? 'flex-1 bg-white shadow-sm py-2.5 rounded-xl text-sm font-medium text-teal-700 transition-all' : 'flex-1 py-2.5 text-sm font-medium text-gray-500 hover:text-gray-700 transition-all'}>{t("professional")}</button>
+3754:                                     <button 
+3833:                      <button
+3878:        <button onClick={legal_openTerms} className="hover:text-white transition-colors hover:underline">{t("terms_link")}</button>
+3879:        <button onClick={legal_openPrivacy} className="hover:text-white transition-colors hover:underline">{t("privacy_link")}</button>
+3911:                <button onClick={notif_hide} style={{ background: 'transparent', border: 'none', color: '#666', fontSize: '13px', fontWeight: 600, cursor: 'pointer', padding: '6px 16px', borderRadius: '50px' }}>{t("not_now")}</button>
+3912:                <button onClick={notif_requestPermission} style={{ background: '#0d9488', color: 'white', border: 'none', borderRadius: '50px', fontSize: '13px', fontWeight: 600, cursor: 'pointer', padding: '6px 16px' }}>{t("enable_btn")}</button>
+3969:            <button
+3976:            <button
+4000:            <button onClick={pwa_install} className="bg-teal-600 px-3 py-1.5 rounded-[8px] text-xs font-bold whitespace-nowrap active:scale-95 transition-transform">{t("add_btn")}</button>
+4001:            <button onClick={() => setShowPWABanner(false)} className="text-white/50 hover:text-white p-1 flex items-center justify-center">

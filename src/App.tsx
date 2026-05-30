@@ -2054,7 +2054,7 @@ export default function App() {
                    </div>
 
                    {emergencyResult.requiresEmergencyAssistance && (
-                      <div className="bg-red-600 text-white p-6 rounded-2xl shadow-inner flex flex-col items-center justify-center text-center">
+                      <div className="bg-red-600 text-white p-4 md:p-6 rounded-2xl shadow-inner flex flex-col items-center justify-center text-center">
                          <PhoneCall className="w-12 h-12 mb-3" />
                          <p className="text-sm font-bold uppercase tracking-widest text-red-200">{t("emergency_call")}</p>
                          <p className="text-5xl font-black tabular-nums tracking-tight mt-1">{emergencyResult.localEmergencyNumber}</p>
@@ -2112,7 +2112,7 @@ export default function App() {
       <div className="absolute bottom-[-10%] left-[-5%] w-96 h-96 bg-blue-400/10 rounded-full blur-3xl pointer-events-none" />
 
       {/* Header */}
-      <header className="sticky top-0 z-10 bg-white/60 backdrop-blur-xl border-b border-white shadow-[0_4px_30px_rgb(0,0,0,0.03)]">
+      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-100 shadow-[0_2px_15px_rgb(0,0,0,0.03)]">
         <div className="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="logo-icon-wrap" style={{ width: 36, height: 36, flexShrink: 0, borderRadius: 7 }}>
@@ -2319,7 +2319,6 @@ export default function App() {
               </span>
               <span className="text-xs font-semibold">{t("tab_compare")}</span>
             </button>
-
             <button
               onClick={() => {
                 if (checkPaywall('reminders')) setActiveTab('reminders');
@@ -2413,7 +2412,7 @@ export default function App() {
         ) : activeTab === 'reminders' ? (
           <motion.div key="reminders" id="panel-reminders" initial={{opacity: 0, y: 15}} animate={{opacity: 1, y: 0}} exit={{opacity: 0, y: -15}} className="max-w-3xl mx-auto space-y-8">
             
-            <div className="bg-white/70 backdrop-blur-2xl p-6 sm:p-10 rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white">
+            <div className="bg-white/70 backdrop-blur-2xl p-4 md:p-6 sm:p-10 rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white">
               <h2 className="text-2xl font-bold text-teal-900 mb-6 flex items-center gap-2">
                 <ICONS.Bell width={28} height={28} /> {t("add_reminder_btn")}
               </h2>
@@ -2550,7 +2549,7 @@ export default function App() {
               </div>
             </div>
 
-            <div className="bg-white/70 backdrop-blur-2xl p-6 sm:p-10 rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white">
+            <div className="bg-white/70 backdrop-blur-2xl p-4 md:p-6 sm:p-10 rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white">
               <h2 className="text-xl font-bold text-teal-900 mb-6">{t("your_reminders")} <span className="ml-2 bg-teal-100 text-teal-800 px-2 py-1 rounded-full text-sm">{reminders.length}</span></h2>
               
               {reminders.length === 0 ? (
@@ -2870,7 +2869,7 @@ export default function App() {
           
           {/* Left Column: Input Form */}
           <div className="lg:col-span-4 flex flex-col space-y-6">
-            <div className="bg-white/70 backdrop-blur-xl rounded-[2rem] p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white flex flex-col items-center relative overflow-hidden group hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all">
+            <div className="bg-white/70 backdrop-blur-xl rounded-[2rem] p-4 md:p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white flex flex-col items-center relative overflow-hidden group hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all">
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-400 to-teal-500 opacity-80"></div>
               <div className="self-start mb-4 bg-teal-100/60 backdrop-blur-sm text-teal-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest border border-teal-200/50">{t("step1")}</div>
               <div className="text-center mb-6 w-full">
@@ -2931,7 +2930,7 @@ export default function App() {
               )}
             </div>
 
-            <div className="bg-white/70 backdrop-blur-xl rounded-[2rem] p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white relative overflow-hidden hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all">
+            <div className="bg-white/70 backdrop-blur-xl rounded-[2rem] p-4 md:p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white relative overflow-hidden hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all">
                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-gray-200 to-gray-300 opacity-80"></div>
                <div className="flex items-center justify-between mb-4">
                  <div className="bg-gray-100/80 backdrop-blur-sm border border-gray-200/50 text-gray-600 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">{t("step2")}</div>
@@ -3310,7 +3309,7 @@ export default function App() {
                     <motion.div 
                       initial={{ scale: 0.95, opacity: 0 }} 
                       animate={{ scale: 1, opacity: 1 }} 
-                      className="bg-red-600 text-white p-6 rounded-3xl shadow-xl shadow-red-600/20 mb-8 border border-red-500 overflow-hidden relative"
+                      className="bg-red-600 text-white p-4 md:p-6 rounded-3xl shadow-xl shadow-red-600/20 mb-8 border border-red-500 overflow-hidden relative"
                     >
                       <div className="absolute top-0 right-0 p-8 opacity-10">
                         <AlertTriangle className="w-48 h-48" />
@@ -3330,7 +3329,7 @@ export default function App() {
                               <p className="font-semibold">{result.emergencyDetails.immediateAction}</p>
                            </div>
                         </div>
-                        <div className="shrink-0 flex flex-col items-center justify-center bg-white text-red-600 p-6 rounded-2xl shadow-inner min-w-[200px]">
+                        <div className="shrink-0 flex flex-col items-center justify-center bg-white text-red-600 p-4 md:p-6 rounded-2xl shadow-inner min-w-[200px]">
                            <PhoneCall className="w-10 h-10 mb-3" />
                            <span className="text-xs font-bold uppercase tracking-widest text-red-400 mb-1">{t("emergency_dial")}</span>
                            <span className="text-4xl font-black tabular-nums tracking-tighter">{result.emergencyDetails.localEmergencyNumber}</span>
@@ -3344,7 +3343,7 @@ export default function App() {
                     <motion.div 
                       initial={{ scale: 0.95, opacity: 0 }} 
                       animate={{ scale: 1, opacity: 1 }} 
-                      className="bg-orange-600 text-white p-6 rounded-3xl shadow-xl shadow-orange-600/20 mb-8 border border-orange-500 overflow-hidden relative"
+                      className="bg-orange-600 text-white p-4 md:p-6 rounded-3xl shadow-xl shadow-orange-600/20 mb-8 border border-orange-500 overflow-hidden relative"
                     >
                       <div className="absolute top-0 right-0 p-8 opacity-10">
                         <AlertTriangle className="w-48 h-48" />
@@ -3373,7 +3372,7 @@ export default function App() {
                     <motion.div 
                       initial={{ scale: 0.95, opacity: 0 }} 
                       animate={{ scale: 1, opacity: 1 }} 
-                      className="bg-purple-600 text-white p-6 rounded-3xl shadow-xl shadow-purple-600/20 mb-8 border border-purple-500 overflow-hidden relative"
+                      className="bg-purple-600 text-white p-4 md:p-6 rounded-3xl shadow-xl shadow-purple-600/20 mb-8 border border-purple-500 overflow-hidden relative"
                     >
                       <div className="absolute top-0 right-0 p-8 opacity-10">
                         <ScanSearch className="w-48 h-48" />
@@ -3408,7 +3407,7 @@ export default function App() {
                   {((result.globalInteractions && result.globalInteractions.toLowerCase() !== "no known interactions" && result.globalInteractions.trim() !== "") || (result.globalWarnings && result.globalWarnings.length > 0)) && (
                     <div className="space-y-4 mb-8">
                       {result.globalInteractions && result.globalInteractions.toLowerCase() !== "no known interactions" && result.globalInteractions.trim() !== "" && (
-                        <div className="bg-rose-50/80 backdrop-blur-md p-6 rounded-[2rem] border border-rose-200/50 shadow-[0_4px_20px_rgb(225,29,72,0.05)]">
+                        <div className="bg-rose-50/80 backdrop-blur-md p-4 md:p-6 rounded-[2rem] border border-rose-200/50 shadow-[0_4px_20px_rgb(225,29,72,0.05)]">
                           <div className="flex items-center gap-2 mb-3 text-rose-600">
                              <AlertCircle className="w-5 h-5 shrink-0" />
                              <h3 className="text-sm font-bold tracking-wide uppercase">{t("interactions_found")}</h3>
@@ -3418,7 +3417,7 @@ export default function App() {
                       )}
                       
                       {result.globalWarnings && result.globalWarnings.length > 0 && (
-                        <div className="bg-amber-50/80 backdrop-blur-md p-6 rounded-[2rem] border border-amber-200/50 shadow-[0_4px_20px_rgb(217,119,6,0.05)]">
+                        <div className="bg-amber-50/80 backdrop-blur-md p-4 md:p-6 rounded-[2rem] border border-amber-200/50 shadow-[0_4px_20px_rgb(217,119,6,0.05)]">
                           <div className="flex items-center gap-2 mb-3 text-amber-600">
                              <ShieldAlert className="w-5 h-5 shrink-0" />
                              <h3 className="text-sm font-bold tracking-wide uppercase">{t("general_warnings")}</h3>
@@ -3530,42 +3529,42 @@ export default function App() {
                                  
                                  {explanationMode === 'simplified' && (
                                    <motion.div key="simplified" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                     <div className="bg-indigo-50/80 backdrop-blur-md p-6 rounded-[2rem] shadow-[0_4px_20px_rgb(79,70,229,0.05)] border border-indigo-200/50 md:col-span-2">
+                                     <div className="bg-indigo-50/80 backdrop-blur-md p-4 md:p-6 rounded-[2rem] shadow-[0_4px_20px_rgb(79,70,229,0.05)] border border-indigo-200/50 md:col-span-2">
                                         <div className="flex items-center gap-2 mb-3 text-indigo-700">
                                            <User className="w-5 h-5" />
                                            <h3 className="text-sm font-bold tracking-wide uppercase">{t("why_prescribed")}</h3>
                                         </div>
                                         <p className="text-indigo-900/90 font-medium leading-relaxed text-lg">{drug.simplifiedMode?.doctorPrescriptionReason || "This was likely prescribed to you for " + (drug.simplifiedMode?.whyUseIt || (drug as any).purpose)}</p>
                                      </div>
-                                     <div className="bg-white/80 backdrop-blur-xl p-6 rounded-[2rem] shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-white">
+                                     <div className="bg-white/80 backdrop-blur-xl p-4 md:p-6 rounded-[2rem] shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-white">
                                         <div className="flex items-center gap-2 mb-3 text-indigo-600">
                                            <Activity className="w-4 h-4" />
                                            <h3 className="text-sm font-bold tracking-wide uppercase">{t("what_used_for")}</h3>
                                         </div>
                                         <p className="text-gray-600 text-sm leading-relaxed">{drug.simplifiedMode?.whyUseIt || (drug as any).purpose}</p>
                                      </div>
-                                     <div className="bg-white/80 backdrop-blur-xl p-6 rounded-[2rem] shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-white">
+                                     <div className="bg-white/80 backdrop-blur-xl p-4 md:p-6 rounded-[2rem] shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-white">
                                         <div className="flex items-center gap-2 mb-3 text-blue-600">
                                            <Clock className="w-4 h-4" />
                                            <h3 className="text-sm font-bold tracking-wide uppercase">{t("when_works")}</h3>
                                         </div>
                                         <p className="text-gray-600 text-sm leading-relaxed">{drug.simplifiedMode?.whenStartsWorking || "Typically starts working within an hour or two."}</p>
                                      </div>
-                                     <div className="bg-white/80 backdrop-blur-xl p-6 rounded-[2rem] shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-white">
+                                     <div className="bg-white/80 backdrop-blur-xl p-4 md:p-6 rounded-[2rem] shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-white">
                                         <div className="flex items-center gap-2 mb-3 text-rose-500">
                                            <AlertCircle className="w-4 h-4" />
                                            <h3 className="text-sm font-bold tracking-wide uppercase">{t("side_effects")}</h3>
                                         </div>
                                         <p className="text-gray-600 text-sm leading-relaxed">{drug.simplifiedMode?.commonSideEffects || "May cause some common side effects. Refer to the leaflet."}</p>
                                      </div>
-                                     <div className="bg-white/80 backdrop-blur-xl p-6 rounded-[2rem] shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-white">
+                                     <div className="bg-white/80 backdrop-blur-xl p-4 md:p-6 rounded-[2rem] shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-white">
                                         <div className="flex items-center gap-2 mb-3 text-amber-500">
                                            <ShieldAlert className="w-4 h-4" />
                                            <h3 className="text-sm font-bold tracking-wide uppercase">{t("avoid")}</h3>
                                         </div>
                                         <p className="text-gray-600 text-sm leading-relaxed">{drug.simplifiedMode?.whatToAvoid || "Avoid known allergens."}</p>
                                      </div>
-                                     <div className="bg-white/80 backdrop-blur-xl p-6 rounded-[2rem] shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-white md:col-span-2">
+                                     <div className="bg-white/80 backdrop-blur-xl p-4 md:p-6 rounded-[2rem] shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-white md:col-span-2">
                                         <div className="flex items-center gap-2 mb-4 text-teal-600">
                                            <Clock className="w-4 h-4" />
                                            <h3 className="text-sm font-bold tracking-wide uppercase">{t("how_to_take")}</h3>
@@ -3600,14 +3599,14 @@ export default function App() {
 
                                  {explanationMode === 'professional' && (
                                    <motion.div key="professional" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} className="space-y-4">
-                                     <div className="bg-white/80 backdrop-blur-xl p-6 rounded-[2rem] shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-white">
+                                     <div className="bg-white/80 backdrop-blur-xl p-4 md:p-6 rounded-[2rem] shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-white">
                                         <div className="flex items-center gap-2 mb-3 text-indigo-600">
                                            <Activity className="w-4 h-4" />
                                            <h3 className="text-sm font-bold tracking-wide uppercase">{t("active_ing")}</h3>
                                         </div>
                                         <p className="text-gray-600 text-sm leading-relaxed">{drug.professionalMode?.activeIngredient || "N/A"}</p>
                                      </div>
-                                     <div className="bg-white/80 backdrop-blur-xl p-6 rounded-[2rem] shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-white">
+                                     <div className="bg-white/80 backdrop-blur-xl p-4 md:p-6 rounded-[2rem] shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-white">
                                         <div className="flex items-center gap-2 mb-3 text-blue-600">
                                            <Activity className="w-4 h-4" />
                                            <h3 className="text-sm font-bold tracking-wide uppercase">{t("mech_action")}</h3>
@@ -3615,14 +3614,14 @@ export default function App() {
                                         <p className="text-gray-600 text-sm leading-relaxed">{drug.professionalMode?.mechanismOfAction || "N/A"}</p>
                                      </div>
                                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                         <div className="bg-rose-50/80 backdrop-blur-md p-6 rounded-[2rem] border border-rose-200/50 shadow-[0_4px_20px_rgb(225,29,72,0.03)]">
+                                         <div className="bg-rose-50/80 backdrop-blur-md p-4 md:p-6 rounded-[2rem] border border-rose-200/50 shadow-[0_4px_20px_rgb(225,29,72,0.03)]">
                                             <div className="flex items-center gap-2 mb-3 text-rose-600">
                                                <AlertCircle className="w-4 h-4" />
                                                <h3 className="text-sm font-bold tracking-wide uppercase">{t("interactions")}</h3>
                                             </div>
                                             <p className="text-rose-900/80 text-sm leading-relaxed">{drug.professionalMode?.interactions || drug.interactions || "None"}</p>
                                          </div>
-                                         <div className="bg-amber-50/80 backdrop-blur-md p-6 rounded-[2rem] border border-amber-200/50 shadow-[0_4px_20px_rgb(217,119,6,0.03)]">
+                                         <div className="bg-amber-50/80 backdrop-blur-md p-4 md:p-6 rounded-[2rem] border border-amber-200/50 shadow-[0_4px_20px_rgb(217,119,6,0.03)]">
                                             <div className="flex items-center gap-2 mb-3 text-amber-700">
                                                <ShieldAlert className="w-4 h-4" />
                                                <h3 className="text-sm font-bold tracking-wide uppercase">{t("prof_warnings")}</h3>
@@ -3730,7 +3729,7 @@ export default function App() {
 
                                {/* Symptom Checker AI Integration */}
                                <div className="mt-6 border-t border-gray-100/50 pt-6">
-                                 <div className="bg-gradient-to-r from-blue-50/80 to-indigo-50/80 backdrop-blur-xl border border-white rounded-[2rem] p-6 shadow-[0_4px_20px_rgb(59,130,246,0.05)]">
+                                 <div className="bg-gradient-to-r from-blue-50/80 to-indigo-50/80 backdrop-blur-xl border border-white rounded-[2rem] p-4 md:p-6 shadow-[0_4px_20px_rgb(59,130,246,0.05)]">
                                    <div className="flex items-center gap-3 mb-3">
                                       <div className="bg-white p-2 rounded-xl shadow-sm">
                                          <MessageCircleQuestion className="w-5 h-5 text-indigo-500" />

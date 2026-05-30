@@ -25,9 +25,9 @@ import { X, BarChart2, ClipboardList, User, ArrowLeftRight, Check, Bell, Downloa
   Then replace the URLs below with real checkout URLs.
 */
 const LEMONSQUEEZY_URLS: Record<string, string> = {
-  monthly:  "YOUR_MONTHLY_1.99_CHECKOUT_URL",
-  yearly:   "YOUR_YEARLY_9.99_CHECKOUT_URL",
-  lifetime: "YOUR_LIFETIME_4.99_CHECKOUT_URL"
+  monthly:  "https://mediscan.lemonsqueezy.com/checkout/buy/27a68793-e06e-4db4-9276-d86880281392",
+  yearly:   "https://mediscan.lemonsqueezy.com/checkout/buy/236514a6-a8ad-47bf-8da3-be95986bd7d3",
+  lifetime: "https://mediscan.lemonsqueezy.com/checkout/buy/8f6ffdab-7a6a-4066-a9f7-7a8c28636804"
 };
 
 interface PaywallModalProps {
@@ -49,6 +49,34 @@ export default function PaywallModal({ trigger, onClose, onSuccess }: PaywallMod
     abtest_init();
     abtest_track('paywall_shown');
   }, []);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && (window as any).createLemonSqueezy) {
+      (window as any).createLemonSqueezy();
+    }
+  }, [selectedPlan]);
+
+  useEffect(() => {
+    const handleLSSuccess = (e: any) => {
+      setLoading(false);
+      const user = JSON.parse(localStorage.getItem('dt_user') || '{}');
+      const planLabels: any = { monthly: 'Pro', yearly: 'Pro Yearly', lifetime: 'Lifetime' };
+      const billingTypes: any = { monthly: 'monthly', yearly: 'yearly', lifetime: 'once' };
+      
+      user.plan = selectedPlan === 'monthly' ? 'pro_monthly' : selectedPlan === 'yearly' ? 'pro_yearly' : 'lifetime';
+      user.planLabel = planLabels[selectedPlan];
+      user.billingType = billingTypes[selectedPlan];
+      user.scansLimit = 999999;
+      user.upgradedAt = new Date().toISOString();
+
+      localStorage.setItem('dt_user', JSON.stringify(user));
+      setActivatedPlan(selectedPlan);
+      setSuccess(true);
+    };
+
+    window.addEventListener('ls-checkout-success', handleLSSuccess);
+    return () => window.removeEventListener('ls-checkout-success', handleLSSuccess);
+  }, [selectedPlan]);
 
   const getTriggerDetails = () => {
     switch (trigger) {
@@ -93,57 +121,11 @@ export default function PaywallModal({ trigger, onClose, onSuccess }: PaywallMod
 
   const details = getTriggerDetails();
 
-  const handleCheckout = () => {
-    setLoading(true);
-    if (typeof window !== 'undefined' && (window as any).analytics_track) { 
-      (window as any).analytics_track('upgrade_clicked', { plan: selectedPlan }); 
-    }
-    abtest_track('upgrade_clicked');
-
-    const user = JSON.parse(localStorage.getItem('dt_user') || '{}');
-    const baseUrl = LEMONSQUEEZY_URLS[selectedPlan];
-
-    if (!baseUrl || baseUrl.includes('YOUR_')) {
-      // Simulate purchase in Dev mode
-      setTimeout(() => {
-        setLoading(false);
-        setActivatedPlan(selectedPlan);
-        setSuccess(true);
-      }, 1500);
-      return;
-    }
-
-    const checkoutUrl = baseUrl
-      + '?checkout[email]=' + encodeURIComponent(user.email || '')
-      + '&checkout[custom][user_id]=' + encodeURIComponent(user.id || '')
-      + '&checkout[custom][plan]=' + selectedPlan;
-
-    const width  = 480;
-    const height = 700;
-    const left   = (screen.width  - width)  / 2;
-    const top    = (screen.height - height) / 2;
-
-    const popup = window.open(
-      checkoutUrl,
-      'Checkout',
-      `width=${width},height=${height},left=${left},top=${top},resizable=yes,scrollbars=yes`
-    );
-
-    const checker = setInterval(() => {
-      if (popup && popup.closed) {
-        clearInterval(checker);
-        setLoading(false);
-        // check payment status from local storage changes 
-        // as handled by the hash listener in App.tsx
-        const updatedUser = JSON.parse(localStorage.getItem('dt_user') || '{}');
-        const paidPlans = ['pro_monthly','pro_yearly','lifetime'];
-        if (paidPlans.includes(updatedUser.plan)) {
-          setActivatedPlan(selectedPlan);
-          setSuccess(true);
-        }
-      }
-    }, 1000);
-  };
+    const user = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('dt_user') || '{}') : {};
+  const checkoutUrl = LEMONSQUEEZY_URLS[selectedPlan]
+    + '?embed=1&checkout[email]=' + encodeURIComponent(user.email || '')
+    + '&checkout[custom][user_id]=' + encodeURIComponent(user.id || '')
+    + '&checkout[custom][plan]=' + selectedPlan;
 
   const handleActivatePlan = () => {
     onSuccess(activatedPlan);
@@ -340,11 +322,16 @@ export default function PaywallModal({ trigger, onClose, onSuccess }: PaywallMod
                 </div>
               </div>
 
-              <button 
+              <a 
                 id="paywall-cta-btn"
-                onClick={handleCheckout}
-                disabled={loading}
-                className={`w-full h-[52px] rounded-[14px] border-none text-[16px] font-[700] text-white mt-[16px] cursor-pointer transition-all flex items-center justify-center ${selectedPlan === 'lifetime' ? 'bg-gradient-to-br from-[#D97706] to-[#B45309] shadow-[0_4px_20px_rgba(217,119,6,.35)]' : 'bg-[#4A7C6F] shadow-[0_4px_20px_rgba(74,124,111,.35)]'}`}
+                href={checkoutUrl}
+                onClick={() => {
+                  if (typeof window !== 'undefined' && (window as any).analytics_track) { 
+                    (window as any).analytics_track('upgrade_clicked', { plan: selectedPlan }); 
+                  }
+                  abtest_track('upgrade_clicked');
+                }}
+                className={`w-full h-[52px] rounded-[14px] border-none text-[16px] font-[700] text-white mt-[16px] cursor-pointer transition-all flex items-center justify-center lemonsqueezy-button no-underline ${selectedPlan === 'lifetime' ? 'bg-gradient-to-br from-[#D97706] to-[#B45309] shadow-[0_4px_20px_rgba(217,119,6,.35)]' : 'bg-[#4A7C6F] shadow-[0_4px_20px_rgba(74,124,111,.35)]'}`}
               >
                 {loading ? (
                     <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -353,7 +340,7 @@ export default function PaywallModal({ trigger, onClose, onSuccess }: PaywallMod
                   selectedPlan === 'yearly' ? 'Start Yearly — $9.99/yr' :
                   'Get Lifetime Access — $4.99'
                 )}
-              </button>
+              </a>
               
               <div className="flex justify-center gap-4 mt-3 text-[11px] text-[#6b9490]">
                 <div className="flex items-center gap-1"><Check className="w-3 h-3" /> Cancel anytime</div>
